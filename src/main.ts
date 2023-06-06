@@ -8,6 +8,10 @@ const gridContainer = document.getElementById("gridContainer");
 const player1 = document.getElementById("player1");
 const player2 = document.getElementById("player2");
 
+//initial symbol state
+
+let currentPlayer = "x";
+
 // function generate grid
 
 function generateGrid() {
@@ -22,9 +26,14 @@ function generateGrid() {
 			// find a way to generate and attach a grid id system for each cell
 			cell.id = `${i}-${j}`;
 
-			// console.log the id of the cell when clicked
+			// instead of console.log on click append the "x" to the cell
 			cell.onclick = function () {
-				console.log(cell.id);
+				if (!cell.textContent) {
+					cell.textContent = currentPlayer;
+					currentPlayer = currentPlayer === "x" ? "o" : "x";
+					player1?.classList.toggle("active");
+					player2?.classList.toggle("active");
+				}
 			};
 
 			row.appendChild(cell);
