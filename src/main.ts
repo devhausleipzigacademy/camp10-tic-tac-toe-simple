@@ -5,6 +5,8 @@ import "./style.css";
 // grab the element from html - selector of some sort (certain type of query *wink wink*)
 
 const gridContainer = document.getElementById("gridContainer");
+const player1 = document.getElementById("player1");
+const player2 = document.getElementById("player2");
 
 // function generate grid
 
