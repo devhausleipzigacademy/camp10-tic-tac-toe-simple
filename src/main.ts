@@ -83,6 +83,12 @@ const winningConditions = [
 // function generate grid
 
 function generateGrid() {
+	// Remove children
+
+	while (gridContainer?.firstChild) {
+		gridContainer.removeChild(gridContainer.firstChild);
+	}
+
 	for (let i = 0; i < 3; i++) {
 		const row = document.createElement("div");
 		row.className = "row";
@@ -105,6 +111,7 @@ function generateGrid() {
 					if (checkWin()) {
 						let newScore = scores[currentPlayer]++;
 						console.log(newScore, currentPlayer);
+						resetGame();
 					}
 
 					console.log(gameBoard);
@@ -167,3 +174,16 @@ function maybeThisOne() {
 // 	}
 // 	return false;
 // }
+
+function resetGame() {
+	gameBoard = Array(3)
+		.fill(null)
+		.map(() => Array(3).fill(null));
+
+	currentPlayer = "x";
+	player1?.classList.add("active");
+	player2?.classList.remove("active");
+
+	//find a way to reset the playing board
+	generateGrid();
+}
