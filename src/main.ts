@@ -100,8 +100,7 @@ function generateGrid() {
 
 					// set the gameboard with the symbol of the current player
 					gameBoard[i][j] = currentPlayer;
-
-					console.log(cell.id, cell.textContent);
+					console.log(gameBoard);
 					currentPlayer = currentPlayer === "x" ? "o" : "x";
 					player1?.classList.toggle("active");
 					player2?.classList.toggle("active");
@@ -116,3 +115,14 @@ function generateGrid() {
 }
 
 generateGrid();
+
+function checkWin() {
+	//for loop {
+	// let combinations = winningConditions[]
+	// this one will have access to each of your winning conditions in the format [[x,y],[x,y],[x,y]].. and so on
+	// let allCellMarkedByCurrentPlayer = true
+	// another nested for loop .. this will have access to [x,y],[x,y],[x,y]
+	//}
+	//
+	//
+}
