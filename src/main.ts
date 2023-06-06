@@ -100,6 +100,8 @@ function generateGrid() {
 
 					// set the gameboard with the symbol of the current player
 					gameBoard[i][j] = currentPlayer;
+					console.log(checkWin());
+
 					console.log(gameBoard);
 					currentPlayer = currentPlayer === "x" ? "o" : "x";
 					player1?.classList.toggle("active");
@@ -117,12 +119,46 @@ function generateGrid() {
 generateGrid();
 
 function checkWin() {
-	//for loop {
-	// let combinations = winningConditions[]
-	// this one will have access to each of your winning conditions in the format [[x,y],[x,y],[x,y]].. and so on
-	// let allCellMarkedByCurrentPlayer = true
-	// another nested for loop .. this will have access to [x,y],[x,y],[x,y]
-	//}
-	//
-	//
+	for (let i = 0; i < winningConditions.length; i++) {
+		let condition = winningConditions[i];
+		let allCellMarkedByCurrentPlayer = true;
+
+		for (let j = 0; j < condition.length; j++) {
+			let [row, cell] = condition[j];
+
+			if (gameBoard[row][cell] !== currentPlayer) {
+				allCellMarkedByCurrentPlayer = false;
+				break;
+			}
+		}
+		if (allCellMarkedByCurrentPlayer) {
+			return true;
+		}
+	}
+	return false;
 }
+
+function maybeThisOne() {
+	return winningConditions.some((condition) => {
+		const allCellMarkedByCurrentPlayer = condition.every(([row, col]) => {
+			return gameBoard[row][col] === currentPlayer;
+		});
+		return allCellMarkedByCurrentPlayer;
+	});
+}
+
+// function checkWin() {
+// 	for (const condition of winningConditions) {
+// 		let win = true;
+// 		for (const [x, y] of condition) {
+// 			if (gameBoard[x][y] !== currentPlayer) {
+// 				win = false;
+// 				break;
+// 			}
+// 		}
+// 		if (win) {
+// 			return true;
+// 		}
+// 	}
+// 	return false;
+// }
