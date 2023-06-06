@@ -12,6 +12,29 @@ const player2 = document.getElementById("player2");
 let currentPlayer = "x";
 let scores = { x: 0, o: 0 };
 
+// boardgame state which at the start of the game is sort of like null
+
+// [
+//     [null, null, null],
+//     [null, null, null],
+//     [null, null, null],
+// ]
+
+//initialize a gameboard matrix that tracks our x and o
+let gameBoard = [];
+
+for (let i = 0; i < 3; i++) {
+	let row = [];
+	for (let j = 0; j < 3; j++) {
+		row.push(null);
+	}
+	gameBoard.push(row);
+}
+
+// let gBoard = Array(3)
+// 	.fill(null)
+// 	.map(() => Array(3).fill(null));
+
 // winning conditions
 const winningConditions = [
 	[
