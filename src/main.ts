@@ -9,8 +9,52 @@ const player1 = document.getElementById("player1");
 const player2 = document.getElementById("player2");
 
 //initial symbol state
-
 let currentPlayer = "x";
+let scores = { x: 0, o: 0 };
+
+// winning conditions
+const winningConditions = [
+	[
+		[1, 1],
+		[1, 2],
+		[1, 3],
+	],
+	[
+		[2, 1],
+		[2, 2],
+		[2, 3],
+	],
+	[
+		[3, 1],
+		[3, 2],
+		[3, 3],
+	],
+	[
+		[1, 1],
+		[2, 1],
+		[3, 1],
+	],
+	[
+		[1, 2],
+		[2, 2],
+		[3, 2],
+	],
+	[
+		[1, 3],
+		[2, 3],
+		[3, 3],
+	],
+	[
+		[1, 1],
+		[2, 2],
+		[3, 3],
+	],
+	[
+		[1, 3],
+		[2, 2],
+		[3, 1],
+	],
+];
 
 // function generate grid
 
@@ -30,6 +74,7 @@ function generateGrid() {
 			cell.onclick = function () {
 				if (!cell.textContent) {
 					cell.textContent = currentPlayer;
+					console.log(cell.id, cell.textContent);
 					currentPlayer = currentPlayer === "x" ? "o" : "x";
 					player1?.classList.toggle("active");
 					player2?.classList.toggle("active");
