@@ -3,3 +3,33 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
+#gridContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1rem;
+}
+
+.row {
+	display: flex;
+}
+
+.cell {
+	border: 2px solid #007bff;
+	padding: 10px;
+	margin: 2px;
+	cursor: pointer;
+	text-align: center;
+	width: 12rem;
+	height: 12rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+	color: #007bff;
+	font-weight: bold;
+	font-size: 5rem;
+	transition: background-color 0.3s ease;
+}
