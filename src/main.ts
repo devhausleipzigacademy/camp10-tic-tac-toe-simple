@@ -10,7 +10,8 @@ const player2 = document.getElementById("player2");
 
 //initial symbol state
 let currentPlayer = "x";
-let scores = { x: 0, o: 0 };
+
+let scores: { [key: string]: number } = { x: 0, o: 0 };
 
 // boardgame state which at the start of the game is sort of like null
 
@@ -95,12 +96,16 @@ function generateGrid() {
 
 			// instead of console.log on click append the "x" to the cell
 			cell.onclick = function () {
-				if (!cell.textContent) {
+				if (!cell.textContent && !checkWin()) {
 					cell.textContent = currentPlayer;
 
 					// set the gameboard with the symbol of the current player
 					gameBoard[i][j] = currentPlayer;
-					console.log(checkWin());
+
+					if (checkWin()) {
+						let newScore = scores[currentPlayer]++;
+						console.log(newScore, currentPlayer);
+					}
 
 					console.log(gameBoard);
 					currentPlayer = currentPlayer === "x" ? "o" : "x";
