@@ -5,6 +5,10 @@ import "./style.css";
 const gridContainer = document.getElementById("gridContainer");
 const player1 = document.getElementById("player1");
 const player2 = document.getElementById("player2");
+const resetButton = document.getElementById("reset");
+if (resetButton) {
+	resetButton.addEventListener("click", resetScores);
+}
 
 //initial symbol state
 let currentPlayer = "x";
@@ -120,9 +124,41 @@ function checkWin() {
 
 	if (hasWon) {
 		updateScoreAndDisplayWinner();
+		return true;
 	}
 
-	return hasWon;
+	// Check for a draw
+	if (gameBoard.every((row) => row.every((cell) => cell !== null))) {
+		updateDrawCount();
+		resetGame();
+		return true;
+	}
+
+	return false;
+}
+
+function updateDrawCount() {
+	const drawCounter = document.getElementById("drawCount");
+	if (drawCounter) {
+		drawCounter.textContent = (
+			parseInt(drawCounter.textContent || "0") + 1
+		).toString();
+	}
+	setTimeout(() => {
+		alert("It's a draw!");
+	}, 100);
+}
+
+function resetScores() {
+	scores = { x: 0, o: 0 };
+	const scoreElements = document.querySelectorAll(".score");
+	scoreElements.forEach((scoreElement) => {
+		scoreElement.textContent = "0";
+	});
+	const drawCounter = document.getElementById("drawCount");
+	if (drawCounter) {
+		drawCounter.textContent = "0";
+	}
 }
 
 function resetGame() {
@@ -145,19 +181,7 @@ function updateScoreAndDisplayWinner() {
 		if (scoreElement) {
 			scoreElement.textContent = scores[currentPlayer].toString();
 		}
-		// if (currentPlayer === "x") {
-		// 	const scoreElement = player1?.querySelector(".score");
-		// 	if (scoreElement) {
-		// 		scoreElement.textContent = scores[currentPlayer].toString();
-		// 	}
-		// } else {
-		// 	const scoreElement = player2?.querySelector(".score");
-		// 	if (scoreElement) {
-		// 		scoreElement.textContent = scores[currentPlayer].toString();
-		// 	}
-		// }
 
-		// Reset the game
 		resetGame();
 	}, 100);
 }
