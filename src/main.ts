@@ -139,17 +139,23 @@ function updateScoreAndDisplayWinner() {
 		alert(`Player ${currentPlayer.toUpperCase()} won the game!`);
 
 		// Update player scores in the DOM
-		if (currentPlayer === "x") {
-			const scoreElement = player1?.querySelector(".score");
-			if (scoreElement) {
-				scoreElement.textContent = scores[currentPlayer].toString();
-			}
-		} else {
-			const scoreElement = player2?.querySelector(".score");
-			if (scoreElement) {
-				scoreElement.textContent = scores[currentPlayer].toString();
-			}
+
+		const currentPlayerElement = currentPlayer === "x" ? player1 : player2;
+		const scoreElement = currentPlayerElement?.querySelector(".score");
+		if (scoreElement) {
+			scoreElement.textContent = scores[currentPlayer].toString();
 		}
+		// if (currentPlayer === "x") {
+		// 	const scoreElement = player1?.querySelector(".score");
+		// 	if (scoreElement) {
+		// 		scoreElement.textContent = scores[currentPlayer].toString();
+		// 	}
+		// } else {
+		// 	const scoreElement = player2?.querySelector(".score");
+		// 	if (scoreElement) {
+		// 		scoreElement.textContent = scores[currentPlayer].toString();
+		// 	}
+		// }
 
 		// Reset the game
 		resetGame();
